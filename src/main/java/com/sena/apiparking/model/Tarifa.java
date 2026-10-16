@@ -26,7 +26,7 @@ import lombok.Setter;
 @Builder
 
 public class Tarifa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_tarifa;
@@ -42,7 +42,5 @@ public class Tarifa {
 	@Column(nullable = false)
 	private LocalDateTime vigenteDesde;
 	private LocalDateTime vigenteHasta;
-	
-	
 
 }
