@@ -1,6 +1,5 @@
 package com.sena.apiparking.config;
 
-import java.util.Iterator;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,11 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TarifaInicializador implements ApplicationRunner  {
+public class TarifaInicializador implements ApplicationRunner {
 
 	private final TarifaRepository tarifaRepo;
 	private final TarifaProperties props;
-	
+
 	@Override
 	public void run(ApplicationArguments args) {
 		// TODO Auto-generated method stub
@@ -29,15 +28,10 @@ public class TarifaInicializador implements ApplicationRunner  {
 				continue;
 			}
 			TarifaProperties.Valores v = props.getTipos().get(tipo);
-			tarifaRepo.save(Tarifa.builder()
-					.tipo(tipo)
-					.valorHora(v.getHora())
-					.valorFraccion(v.getFraccion())
-					.fraccionMinutos(props.getFraccionMinutos())
-					.vigenteDesde(ZonaHoraria.ahora())
-					.build());
-				log.info("Tarifa inicial creada para {}", tipo);
-			
+			tarifaRepo.save(Tarifa.builder().tipo(tipo).valorHora(v.getHora()).valorFraccion(v.getFraccion())
+					.fraccionMinutos(props.getFraccionMinutos()).vigenteDesde(ZonaHoraria.ahora()).build());
+			log.info("Tarifa inicial creada para {}", tipo);
+
 		}
 	}
 }
